@@ -17,9 +17,9 @@ def processMoney(request):
             score = random.randint(-50,50)
         request.session['count'] += score
         if score > 0:
-            request.session['activities'].append({'class': 'green', 'log': f"You earned {score} golds from the {request.POST['location']}! {strftime('%Y/%m/%d %I:%M:%S %p')}"})
+            request.session['activities'].insert(0,{'class': 'green', 'log': f"You earned {score} golds from the {request.POST['location']}! {strftime('%Y/%m/%d %I:%M:%S %p')}"})
         else:
-            request.session['activities'].append({'class': 'red', 'log': f"You lost {-1*score} golds at the {request.POST['location']}... Ouch!!! {strftime('%Y/%m/%d %I:%M:%S %p')}"})
+            request.session['activities'].insert(0,{'class': 'red', 'log': f"You lost {-1*score} golds at the {request.POST['location']}... Ouch!!! {strftime('%Y/%m/%d %I:%M:%S %p')}"})
     else:
         request.session['count'] = 0
         request.session['activities'] = []
